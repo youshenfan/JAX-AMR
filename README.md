@@ -17,7 +17,7 @@ For the detailed implementation strategies of JAX-AMR, please refer to our [pape
 
 
 ## Example
-An example for the conjunction with a simple CFD solver with JAX-AMR are provided [here](https://github.com/JA4S/JAX-AMR/tree/main/examples).
+An example for the conjunction of a simple CFD solver with JAX-AMR are provided [here](https://github.com/JA4S/JAX-AMR/tree/main/examples).
 
 The density result and refinement level for the example are shown as follows.
 
