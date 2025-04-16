@@ -9,6 +9,10 @@ Authors:
 Correspondence via [mail](mailto:haochengwenson@126.com) (Haocheng Wen).
 
 ## Implementation Strategy
+The multi-layer blocks and the partitioning and refinement strategies in JAX-AMR are illustrated as follows.
+
+<img src="/docs/images/blocks in JAX-AMR.png" alt="Schematic diagram of multi-layer blocks in JAX-AMR" height="600"/>
+
 For the detailed implementation strategies of JAX-AMR, please refer to our [paper](xxx).
 
 ## State of the Project
