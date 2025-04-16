@@ -9,7 +9,7 @@ Authors:
 Correspondence via [mail](mailto:haochengwenson@126.com) (Haocheng Wen).
 
 ## Implementation Strategy
-For the detailed implementation strategies for JAX-AMR, please refer to our [paper](xxx).
+For the detailed implementation strategies of JAX-AMR, please refer to our [paper](xxx).
 
 ## State of the Project
 
