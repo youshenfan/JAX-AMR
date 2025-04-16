@@ -15,6 +15,16 @@ The multi-layer blocks and the partitioning and refinement strategies in JAX-AMR
 
 For the detailed implementation strategies of JAX-AMR, please refer to our [paper](xxx).
 
+
+## Example
+An example for the conjunction with a simple CFD solver with JAX-AMR are provided [here](https://github.com/JA4S/JAX-AMR/tree/main/examples).
+
+The density result and refinement level for the example are shown as follows.
+
+<img src="/examples/result.png" alt="result" height="400"/>
+
+<img src="/examples/refinement_level.png" alt="refinement level" height="400"/>
+
 ## State of the Project
 
 - [x] 2D AMR, fully jit-compiled ✅
