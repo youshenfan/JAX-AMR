@@ -4,7 +4,7 @@ JAX-AMR is an adaptive mesh refinement framework based on dynamically updated mu
 
 Authors:
 - [Haocheng Wen](https://github.com/thuwen)
-- [Faxuan Luo]([https://github.com/luofx23)
+- [Faxuan Luo](https://github.com/luofx23)
 
 Correspondence via [mail](mailto:haochengwenson@126.com) (Haocheng Wen).
 
