@@ -1,6 +1,15 @@
-# JAX-AMR
+# JAX-AMR: A JAX-based adaptive mesh refinement framework
 
-JAX-AMR is a JAX-based adaptive mesh refinement framework, which can totally support the JIT (Just-In-Time) compilation (jax.jit).
+JAX-AMR is an adaptive mesh refinement framework based on dynamically updated multi-layer blocks with fixed positions and fixed shapes. This framework is fully compatible with JIT and vectorized operations.
+
+Authors:
+- [Haocheng Wen](https://github.com/thuwen)
+- [Faxuan Luo]([https://github.com/luofx23)
+
+Correspondence via [mail](mailto:haochengwenson@126.com) (Haocheng Wen).
+
+## Implementation Strategy
+For the detailed implementation strategies for JAX-AMR, please refer to our [paper](xxx).
 
 ## State of the Project
 
@@ -9,3 +18,8 @@ JAX-AMR is a JAX-based adaptive mesh refinement framework, which can totally sup
 - [ ] 3D AMR (soon)
 - [ ] Immerse boudary method (soon)
 - [ ] parallel mannagment (soon)
+
+
+## License
+This project is licensed under the MIT License - see 
+the [LICENSE](LICENSE) file or for details https://en.wikipedia.org/wiki/MIT_License.
