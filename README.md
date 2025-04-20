@@ -33,6 +33,18 @@ The density result and refinement level for the example are shown as follows.
 - [ ] Immerse boudary method (soon)
 - [ ] parallel mannagment (soon)
 
+## Citation
+JANC: A cost-effective, differentiable compressible reacting flow solver featured with JAX-based adaptive mesh refinement
+```
+@article{Wen2025,
+   author = {Haocheng Wen and Faxuan Luo and Sheng Xu and Bing Wang},
+   doi = {xx},
+   journal = {arXiv preprint},
+   title = {JANC: A cost-effective, differentiable compressible reacting flow solver featured with JAX-based adaptive mesh refinement},
+   year = {2025}
+}
+```
+
 
 ## License
 This project is licensed under the MIT License - see 
