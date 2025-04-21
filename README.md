@@ -13,7 +13,7 @@ The multi-layer blocks and the partitioning and refinement strategies in JAX-AMR
 
 <img src="/docs/images/blocks in JAX-AMR.png" alt="Schematic diagram of multi-layer blocks in JAX-AMR" height="500"/>
 
-For the detailed implementation strategies of JAX-AMR, please refer to our [paper](xxx).
+For the detailed implementation strategies of JAX-AMR, please refer to our [paper](https://doi.org/10.48550/arXiv.2504.13750).
 
 
 ## Example
@@ -38,7 +38,7 @@ JANC: A cost-effective, differentiable compressible reacting flow solver feature
 ```
 @article{Wen2025,
    author = {Haocheng Wen and Faxuan Luo and Sheng Xu and Bing Wang},
-   doi = {xx},
+   doi = {10.48550/arXiv.2504.13750},
    journal = {arXiv preprint},
    title = {JANC: A cost-effective, differentiable compressible reacting flow solver featured with JAX-based adaptive mesh refinement},
    year = {2025}
