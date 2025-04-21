@@ -24,8 +24,8 @@ def set_amr(amr_config):
     Ny = amr_config['base_grid']['Ny']
     Lx = amr_config['base_grid']['Lx']
     Ly = amr_config['base_grid']['Ly']
-    n_grid = [[Nx // n_block[0][0], Ny // n_block[0][1]]] # 加密层block中加密前网格数
-    dx = [Lx/Nx] # 加密层网格尺寸
+    n_grid = [[Nx // n_block[0][0], Ny // n_block[0][1]]]
+    dx = [Lx/Nx]
     dy = [Ly/Ny]
     for i, (bx, by) in enumerate(n_block[1:], 1):
         px, py = n_grid[-1]
@@ -33,10 +33,17 @@ def set_amr(amr_config):
         if (px * mult) % bx != 0 or (py * mult) % by != 0:
             raise ValueError(f"Initial grid not divisible: {(px * mult)}%{bx}={(py * mult)%bx}, {(py * mult)}%{by}={(py * mult)%by}")
             break
-
         n_grid.append([(px * mult // bx) , (py * mult// by) ])
         dx.append(Lx/Nx / (2.0**i))
         dy.append(Ly/Ny / (2.0**i))
+
+    grid_mask_buffer_kernel = (
+    jnp.zeros((2 * buffer_num + 1, 2 * buffer_num + 1))
+        .at[buffer_num, :].set(1)
+        .at[:, buffer_num].set(1)
+        .at[buffer_num, buffer_num].set(0)
+    )
+
 
 
 @partial(jit, static_argnames=('level', 'criterion'))
