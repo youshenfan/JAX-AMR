@@ -1,13 +1,42 @@
 # Copyright © 2025 Haocheng Wen, Faxuan Luo
 # SPDX-License-Identifier: MIT
 
-import jax
 import jax.numpy as jnp
 from jax import jit, vmap
 from jax.scipy.signal import convolve2d
 from functools import partial
-import config
-from config import n_block, n_grid, refinement_tolerance, template_node_num, grid_mask_buffer_kernel
+
+Lx = None
+Ly = None
+n_block=None
+n_grid=None
+refinement_tolerance=None
+template_node_num=None
+grid_mask_buffer_kernel=None
+
+def set_amr(amr_config):
+    global Lx, Ly, n_block, n_grid, refinement_tolerance, template_node_num, grid_mask_buffer_kernel
+    n_block = amr_config['n_block']
+    refinement_tolerance = amr_config['refinement_tolerance']
+    template_node_num = amr_config['template_node_num']
+    buffer_num = amr_config['buffer_num']
+    Nx = amr_config['base_grid']['Nx']
+    Ny = amr_config['base_grid']['Ny']
+    Lx = amr_config['base_grid']['Lx']
+    Ly = amr_config['base_grid']['Ly']
+    n_grid = [[Nx // n_block[0][0], Ny // n_block[0][1]]] # 加密层block中加密前网格数
+    dx = [Lx/Nx] # 加密层网格尺寸
+    dy = [Ly/Ny]
+    for i, (bx, by) in enumerate(n_block[1:], 1):
+        px, py = n_grid[-1]
+        mult = 1 if i == 1 else 2
+        if (px * mult) % bx != 0 or (py * mult) % by != 0:
+            raise ValueError(f"Initial grid not divisible: {(px * mult)}%{bx}={(py * mult)%bx}, {(py * mult)}%{by}={(py * mult)%by}")
+            break
+
+        n_grid.append([(px * mult // bx) , (py * mult// by) ])
+        dx.append(Lx/Nx / (2.0**i))
+        dy.append(Ly/Ny / (2.0**i))
 
 
 @partial(jit, static_argnames=('level', 'criterion'))
