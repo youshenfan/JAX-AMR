@@ -56,3 +56,31 @@ def rhs(U, dx, dy, gamma=1.4):
 
     return F_x + F_y
 
+
+@partial(jit, static_argnames=('level'))
+def rk2(level, blk_data, dx, dy, dt, ref_blk_data, ref_blk_info):
+
+    num = template_node_num
+
+    ghost_blk_data = amr.get_ghost_block_data(ref_blk_data, ref_blk_info)
+    blk_data1 = ghost_blk_data + 0.5 * dt * vmap(rhs, in_axes=(0, None, None))(ghost_blk_data, dx, dy)
+    blk_data1 = amr.update_external_boundary(level, blk_data, blk_data1[..., num:-num, num:-num], ref_blk_info)
+
+
+    ghost_blk_data1 = amr.get_ghost_block_data(blk_data1, ref_blk_info)
+    blk_data2 = ghost_blk_data + dt * vmap(rhs, in_axes=(0, None, None))(ghost_blk_data1, dx, dy)
+    blk_data2 = amr.update_external_boundary(level, blk_data, blk_data2[..., num:-num, num:-num], ref_blk_info)
+
+    return blk_data2
+
+@jit
+def rk2_L0(blk_data, dx, dy, dt):
+
+    U = blk_data[0]
+
+    U1 = U + 0.5 * dt * rhs(U, dx, dy)
+    U2 = U + dt * rhs(U1, dx, dy)
+
+    return jnp.array([U2])
+
+
