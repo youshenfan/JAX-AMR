@@ -6,6 +6,8 @@ import jax.numpy as jnp
 from jax import jit
 from functools import partial
 
+from jaxamr import amr
+
 def flux(U, gamma=1.4):
     rho = U[0]
     u = U[1] / rho
