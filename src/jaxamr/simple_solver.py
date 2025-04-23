@@ -3,7 +3,7 @@
 
 import jax
 import jax.numpy as jnp
-from jax import jit
+from jax import jit, vmap
 from functools import partial
 
 from jaxamr import amr
