@@ -4,10 +4,6 @@
 import jax.numpy as jnp
 import jaxamr.amr as amr
 
-Lx = amr.Lx
-Ly = amr.Ly
-n_block = amr.n_block
-n_grid = amr.n_grid
 
 def plot_block_data(blk_data_component, blk_info, fig_handle, vrange):
 
@@ -16,11 +12,11 @@ def plot_block_data(blk_data_component, blk_info, fig_handle, vrange):
     for i in range(valid_blk_num):
         x_min = 0
         y_min = 0
-        dx = Lx
-        dy = Ly
+        dx = amr.Lx
+        dy = amr.Ly
         for j in range(level+1):
-            dx = dx/n_block[j][0]
-            dy = dy/n_block[j][1]
+            dx = dx/amr.n_block[j][0]
+            dy = dy/amr.n_block[j][1]
             idx = blk_info['glob_index'][i, 2*j]
             idy = blk_info['glob_index'][i, 2*j+1]
             x_min = x_min + dx * idx
@@ -29,11 +25,11 @@ def plot_block_data(blk_data_component, blk_info, fig_handle, vrange):
         y_max = y_min + dy
 
         if level == 0:
-            nx = n_grid[level][0]
-            ny = n_grid[level][1]
+            nx = amr.n_grid[level][0]
+            ny = amr.n_grid[level][1]
         else:
-            nx = n_grid[level][0] * 2
-            ny = n_grid[level][1] * 2
+            nx = amr.n_grid[level][0] * 2
+            ny = amr.n_grid[level][1] * 2
 
         x_edges = jnp.linspace(x_min, x_max, nx)
         y_edges = jnp.linspace(y_min, y_max, ny)
@@ -47,18 +43,18 @@ def plot_block_data(blk_data_component, blk_info, fig_handle, vrange):
 
 def get_N_level_block_data(level, blk_data, blk_info):
 
-    nx = n_grid[0][0] * 2**level
-    ny = n_grid[0][1] * 2**level
+    nx = amr.n_grid[0][0] * 2**level
+    ny = amr.n_grid[0][1] * 2**level
     nU = blk_data.shape[1]
     U = jnp.zeros((nU, nx, ny))
 
     reshape_dims = [nU]
     for i in range(1, level + 1):
-        reshape_dims.extend([n_block[i][0]])
-    reshape_dims.append(n_grid[level][0] * 2)
+        reshape_dims.extend([amr.n_block[i][0]])
+    reshape_dims.append(amr.n_grid[level][0] * 2)
     for i in range(1, level + 1):
-        reshape_dims.extend([n_block[i][1]])
-    reshape_dims.append(n_grid[level][1] * 2)
+        reshape_dims.extend([amr.n_block[i][1]])
+    reshape_dims.append(amr.n_grid[level][1] * 2)
 
     U_reshaped = U.reshape(reshape_dims)
     transpose_order = [0] 
