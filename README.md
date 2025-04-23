@@ -24,7 +24,7 @@ pip install git+https://github.com/JA4S/JAX-AMR.git
 ## Example
 An example for the conjunction of a simple CFD solver with JAX-AMR are provided [here](https://github.com/JA4S/JAX-AMR/tree/main/examples).
 
-Open jax_amr_basic_example.ipynb in Google Colab to run the example.
+Open [jax_amr_basic_example.ipynb](https://github.com/JA4S/JAX-AMR/blob/main/examples/jax_amr_basic_example.ipynb) in Google Colab to run the example.
 
 The density result and refinement level for the example are shown as follows.
 
