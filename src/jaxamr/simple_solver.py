@@ -6,8 +6,6 @@ import jax.numpy as jnp
 from jax import jit
 from functools import partial
 
-template_node_num = amr_config['template_node_num']
-
 def flux(U, gamma=1.4):
     rho = U[0]
     u = U[1] / rho
@@ -77,8 +75,8 @@ def initialize(nx, ny, gamma=1.4):
 
 @partial(jit, static_argnames=('level'))
 def rk2(level, blk_data, dx, dy, dt, ref_blk_data, ref_blk_info):
-
-    num = template_node_num
+    
+    num = 1 # template_node_num
 
     ghost_blk_data = amr.get_ghost_block_data(ref_blk_data, ref_blk_info)
     blk_data1 = ghost_blk_data + 0.5 * dt * vmap(rhs, in_axes=(0, None, None))(ghost_blk_data, dx, dy)
