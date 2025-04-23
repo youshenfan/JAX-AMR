@@ -4,6 +4,7 @@
 import jax
 import jax.numpy as jnp
 from jax import jit
+from functools import partial
 
 def flux(U, gamma=1.4):
     rho = U[0]
