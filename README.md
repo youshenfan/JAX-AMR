@@ -15,9 +15,16 @@ The multi-layer blocks and the partitioning and refinement strategies in JAX-AMR
 
 For the detailed implementation strategies of JAX-AMR, please refer to our [paper](https://doi.org/10.48550/arXiv.2504.13750).
 
+## Quick Installation
+JAX-AMR modules can be easily installed using pip install git:
+```
+pip install git+https://github.com/JA4S/JAX-AMR.git
+```
 
 ## Example
 An example for the conjunction of a simple CFD solver with JAX-AMR are provided [here](https://github.com/JA4S/JAX-AMR/tree/main/examples).
+
+Open jax_amr_basic_example.ipynb in Google Colab to run the example.
 
 The density result and refinement level for the example are shown as follows.
 
